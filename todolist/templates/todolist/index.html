@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"
+        type="text/css">
+    <link href="{%static 'todolist/style.css'%}" rel="stylesheet" type="text/css">
+    <title>Todo APP</title>
+</head>
+
+<body>
+
+        <h1>What to do today ?</h1>
+        <form action="{% url 'add' %}" id="todo" method="POST">
+        {% csrf_token %}
+            {{form.text}}
+            <button type="submit" class="btn btn-success">ADD</button>
+        </form>
+        <div class="deleteBtn">
+            <a href="{% url 'deletecompleted' %}" class="btn btn-warning"><span style="    margin-right: 4px;"><img src="{%static 'todolist/images/bin.png'%}" width="15px" height="15px"></span>DELETECOMPLETED</a>
+            <a href="{% url 'deleteall' %}" class="btn btn-danger"><span style="    margin-right: 4px;"><img src="{%static 'todolist/images/bin.png'%}" width="15px" height="15px"></span>DELETE ALL</a>
+            
+        </div>
+        
+        <ul class="list-group">
+        {% for todo_items in todo_items %}
+            
+          {% if todo_items.completed %}
+            <li class="todo-complete"><h5>{{todo_items.text}}</h5> <span class="secondary_buttons"><a href="{% url 'update_task' todo_items.id %}" class="btn btn-primary update">Update</a><a href="{% url 'update_task' todo_items.id %}" class="btn btn-danger">Delete</a></span></li>
+         {% else %}
+           <li ><a href="{% url 'completed' todo_items.id %}"><h5>{{todo_items.text}}</h5> <span class="secondary_buttons"><a href="{% url 'update_task' todo_items.id %}" class="btn btn-primary update">Update</a><a href="{% url 'delete_task' todo_items.id %}" class="btn btn-danger">Delete</a></span></li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

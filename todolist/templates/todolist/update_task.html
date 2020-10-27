@@ -1,0 +1,26 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"
+        type="text/css">
+    <link href="{%static 'todolist/style.css'%}" rel="stylesheet" type="text/css">
+    <title>Todo APP</title>
+    
+</head>
+<body>
+
+    <h1>Update Your Entry</h1>
+    <form method="POST" action="" class="update_form">
+        {% csrf_token %}
+    
+        {{form}}
+        <input type="submit" class="btn btn-primary" name="Update task">
+    
+        </form>
+</body>
+</html>
+
