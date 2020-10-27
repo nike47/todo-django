@@ -29,7 +29,7 @@
         {% for todo_items in todo_items %}
             
           {% if todo_items.completed %}
-            <li class="todo-complete"><h5>{{todo_items.text}}</h5> <span class="secondary_buttons"><a href="{% url 'update_task' todo_items.id %}" class="btn btn-primary update">Update</a><a href="{% url 'update_task' todo_items.id %}" class="btn btn-danger">Delete</a></span></li>
+            <li class="todo-complete"><h5>{{todo_items.text}}</h5> <span class="secondary_buttons"><a href="{% url 'update_task' todo_items.id %}" class="btn btn-primary update">Update</a><a href="{% url 'delete_task' todo_items.id %}" class="btn btn-danger">Delete</a></span></li>
          {% else %}
            <li ><a href="{% url 'completed' todo_items.id %}"><h5>{{todo_items.text}}</h5> <span class="secondary_buttons"><a href="{% url 'update_task' todo_items.id %}" class="btn btn-primary update">Update</a><a href="{% url 'delete_task' todo_items.id %}" class="btn btn-danger">Delete</a></span></li>
           {% endif %}
